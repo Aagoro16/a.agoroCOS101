@@ -1,3 +1,33 @@
+use std::io;
+
 fn main() {
-    println!("Hello, world!");
+    let mut experienced = String::new();
+    let mut age = String::new();
+ 
+    println!("Is the employee experienced? (yes/no):");
+    io::stdin().read_line(&mut experienced).expect("Failed to read input");
+    println!("Enter age:");
+    io::stdin().read_line(&mut age).expect("Failed to read input");
+ 
+    let experienced = experienced.trim().to_lowercase();
+    let age: u32 = age.trim().parse().expect("Input not an integer");
+
+     let incentive: u32;
+ 
+    if experienced == "yes" {
+        if age >= 40 {
+            incentive = 1_560_000;
+        } else if age >= 30 && age <= 39 {
+            incentive = 1_480_000;
+        } else if age < 28 {
+            incentive = 1_300_000;
+        } else {
+            incentive = 1_300_000;
+        }
+    } else {
+        incentive = 100_000;
+    }
+ 
+    println!("Annual incentive: N{}", incentive);
+    
 }
